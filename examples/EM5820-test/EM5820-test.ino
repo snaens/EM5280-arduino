@@ -1,6 +1,4 @@
-#include  "delay.h"
-#include "usart.h"
-#include "DP_Print_inc.h"
+#include "EM5820-arduino.h"
 #include "string.h"
 #include "stdio.h"
 #include "bitmap.h"
@@ -8,10 +6,10 @@
 /************ 以下是基于STM32F103RB/RCT6开发板串口控制打印机演示代码 *****************/
 
 /*
-** 函数： void select_lines(uint8_t times)
-** 参数： times  换行的次数
-	功能： 换行
-*/
+ ** 函数： void select_lines(uint8_t times)
+ ** 参数： times  换行的次数
+ 功能： 换行
+ */
 void select_lines(uint8_t times)
 {
 	uint8_t i;
@@ -23,11 +21,11 @@ void select_lines(uint8_t times)
 }
 
 /*
-** 函数： void init_putstr(uint8_t *buf, unsigned char nsel)
-** 参数： *buf  字符数据  nsel  对齐方式 0居左 1居中 2居右
-	描述： print_show_str()函数中的部分代码进一步封装，
-	 功能：	初始化打印机和对齐方式的选择 
-*/
+ ** 函数： void init_putstr(uint8_t *buf, unsigned char nsel)
+ ** 参数： *buf  字符数据  nsel  对齐方式 0居左 1居中 2居右
+ 描述： print_show_str()函数中的部分代码进一步封装，
+ 功能：	初始化打印机和对齐方式的选择 
+ */
 void  init_putstr(uint8_t *buf, unsigned char nsel)
 {
 	/* 初始化打印机 */
@@ -39,10 +37,10 @@ void  init_putstr(uint8_t *buf, unsigned char nsel)
 }
 
 /*
-** 函数： void print_show_str(void)
-** 功能：	居左、居中、加粗等效果打印示例
+ ** 函数： void print_show_str(void)
+ ** 功能：	居左、居中、加粗等效果打印示例
 
-*/
+ */
 void print_show_str(void)
 {
 	uint8_t buf[100]={"打印文本效果展示："};
@@ -78,12 +76,12 @@ void print_show_str(void)
 
 
 /*
-** 函数： void w_h_print(unsigned char width,unsigned char hight, unsigned char flag)
-** 参数：width 放大倍宽 hight 放大倍高  flag 0表示同行放大倍数  1代表不同行的放大倍数
-	 描述：	对font_type_print(void)函数的进一步封装
-	 功能：设置文本放大倍数与发送数据
+ ** 函数： void w_h_print(unsigned char width,unsigned char hight, unsigned char flag)
+ ** 参数：width 放大倍宽 hight 放大倍高  flag 0表示同行放大倍数  1代表不同行的放大倍数
+ 描述：	对font_type_print(void)函数的进一步封装
+ 功能：设置文本放大倍数与发送数据
 
-*/
+ */
 void w_h_print(unsigned char width,unsigned char hight, unsigned char flag)
 {
 
@@ -106,11 +104,11 @@ void w_h_print(unsigned char width,unsigned char hight, unsigned char flag)
 }
 
 /*
-** 函数： void font_type_print(void)
-** 
-	 功能：高、宽、放大倍数等效果设置
+ ** 函数： void font_type_print(void)
+ ** 
+ 功能：高、宽、放大倍数等效果设置
 
-*/
+ */
 void font_type_print(void)
 {
 	uint8_t i=0;
@@ -136,12 +134,12 @@ void font_type_print(void)
 }
 
 /*
-** 函数：void mode_and_line(uint8_t *buf, uint8_t mode)
-** 参数：*buf  要发送的数据   mode打印模式选择
-	 描述：对font_mode_show(void)函数部分内容进一步封装
-	 功能：粗体模式选择与换行
+ ** 函数：void mode_and_line(uint8_t *buf, uint8_t mode)
+ ** 参数：*buf  要发送的数据   mode打印模式选择
+ 描述：对font_mode_show(void)函数部分内容进一步封装
+ 功能：粗体模式选择与换行
 
-*/
+ */
 void mode_and_line(uint8_t *buf, uint8_t mode)
 {
 	Set_Print_Mode(mode);/* 粗体模式的选择 */
@@ -152,10 +150,10 @@ void mode_and_line(uint8_t *buf, uint8_t mode)
 
 
 /*
-** 函数：void font_mode_show(void)
-** 
-	 功能：文字的粗体设置
-*/
+ ** 函数：void font_mode_show(void)
+ ** 
+ 功能：文字的粗体设置
+ */
 void font_mode_show(void)
 {
 	uint8_t buf[100]={"文字加粗演示"};
@@ -181,10 +179,10 @@ void font_mode_show(void)
 
 
 /*
-** 函数：void print_bitmap(void)
-** 
-	 功能：打印图片
-*/
+ ** 函数：void print_bitmap(void)
+ ** 
+ 功能：打印图片
+ */
 void print_bitmap(void)
 {
 	/*文本打印*/
@@ -210,14 +208,14 @@ void print_bitmap(void)
 }
 
 /*
-** 函数：void Bar_class_print(uint8_t *buf, uint8_t *code_buf, uint8_t mode)
-** 参数：*buf 发送的缓冲数据  *code_buf 条形码的缓冲数据   mode 条形码的类型
-	 描述：对Barcode_printf(void)函数部分内容进一步封装
-	 功能：条形码的类型选择与打印
-*/
+ ** 函数：void Bar_class_print(uint8_t *buf, uint8_t *code_buf, uint8_t mode)
+ ** 参数：*buf 发送的缓冲数据  *code_buf 条形码的缓冲数据   mode 条形码的类型
+ 描述：对Barcode_printf(void)函数部分内容进一步封装
+ 功能：条形码的类型选择与打印
+ */
 void Bar_class_print(uint8_t *buf, uint8_t *code_buf, uint8_t mode)
 {
-	unsigned char len = strlen(code_buf);
+	unsigned char len = sizeof(code_buf) / sizeof(code_buf[0]);
 	Print_ASCII(buf);
 	select_lines(2);/* 换行 */
 	/* 条形码的打印及类型 */
@@ -227,10 +225,10 @@ void Bar_class_print(uint8_t *buf, uint8_t *code_buf, uint8_t mode)
 
 
 /*
-** 函数：Barcode_printf(void)
-** 
-	 功能：Barcode条形码打印
-*/
+ ** 函数：Barcode_printf(void)
+ ** 
+ 功能：Barcode条形码打印
+ */
 
 void Barcode_printf(void)
 {
@@ -271,10 +269,10 @@ void Barcode_printf(void)
 
 
 /*
-** 函数：QR_code_print(void)
-** 
-	 功能：二维码打印
-*/
+ ** 函数：QR_code_print(void)
+ ** 
+ 功能：二维码打印
+ */
 void QR_code_print(void)
 {
 	/*  QR_code  */
@@ -297,10 +295,18 @@ void QR_code_print(void)
 
 }
 
+void UART_SendByte(unsigned char Send_Dat){
+	Serial.write(Send_Dat);
+}
+
+unsigned char UART_RecByte(void){
+	return Serial.read();
+}
 
 int main(void)
 {
-	uart_init(9600); 			/* uart2的初始化 */
+	Serial.begin();
+	//uart_init(9600); 			/* uart2的初始化 */
 	//TestPrintPage();			/*自测页打印*/
 
 	print_show_str();	  	  	/* 文本的对齐方式以及加粗下划线 */
@@ -310,6 +316,6 @@ int main(void)
 	Barcode_printf();		    /* 条形码各个类形的对比效果 */
 	QR_code_print();			/* 二维码打印效果 */
 
-for(;;){};
+	for(;;){};
 }
 

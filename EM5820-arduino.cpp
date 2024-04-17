@@ -1,7 +1,5 @@
+#include "EM5820-arduino.h"
 
-#include "DP_Print_inc.h"
-#include "led.h"
-#include "usart.h"
 static unsigned char gucCheckPassWord=0;
 
 /* 初始化打印机，清除打印缓冲 a*/

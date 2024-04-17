@@ -1,5 +1,5 @@
-#ifndef		_DP_PRINT_INC_H
-#define		_DP_PRINT_INC_H
+#ifndef		EM5820_ARDUINO_H
+#define		EM5820_ARDUINO_H
 
 /*
  ** 串口发送1字节的函数
